@@ -8,8 +8,7 @@ function Hero(props) {
         <div className="d-flex justify-content-center col-md-12 py-5">
 
           <div>
-            <h1>{props.page} page</h1>
-            <p>Wellcome to Home {props.page}</p>
+            <h1>{props.page} Page</h1>
           </div>
         </div>
       </div>
