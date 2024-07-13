@@ -57,12 +57,6 @@ function FaqContent() {
                 ))}
               </tbody>
             </table>
-
-            {!comments && (
-              <div className="">
-                <Spinner />
-              </div>
-            )}
           </div>
         </div>
       </div>
