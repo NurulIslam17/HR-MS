@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
+
+// const baseURL = "http://localhost:8080/contact";
 
 function FaqContent() {
+  const [comments, setComment] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadComments();
+  }, []);
+
+  const loadComments = async () => {
+    const result = await axios.get("http://localhost:8080/contact");
+    setComment(result.data);
+    setLoading(false);
+  };
+  if (!comments) return null;
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <div className="container mt-4">
@@ -16,28 +39,30 @@ function FaqContent() {
                   <th scope="col">Phone</th>
                   <th scope="col">Email</th>
                   <th scope="col">Comment</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Not Funny</td>
-                </tr>
-
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Not Funny</td>
-                </tr>
-
+                {comments.map((comment, index) => (
+                  <tr key={index}>
+                    <th scope="row">{index+1}</th>
+                    <td>{comment.username}</td>
+                    <td>{comment.phone}</td>
+                    <td>{comment.email}</td>
+                    <td>{comment.comment}</td>
+                    <td className="text-info">
+                      <Link to="/faq/details">More..</Link>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
+
+            {!comments && (
+              <div className="">
+                <Spinner />
+              </div>
+            )}
           </div>
         </div>
       </div>

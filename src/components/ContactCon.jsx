@@ -8,7 +8,7 @@ function ContactCon() {
         <div className="row mt-4">
 
           <div className="col-md-6 mt-5 left-div">
-            <img src={contactImg} className="w-100 w-100" alt="" srcset="" />
+            <img src={contactImg} className="w-100 w-100" alt="" srcSet="" />
           </div>
 
           <div className="col-md-6 right-div">
@@ -16,7 +16,7 @@ function ContactCon() {
             <hr/>
             <form>
               <div className="mb-3">
-                <label for="name" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Name
                 </label>
                 <input
@@ -29,7 +29,7 @@ function ContactCon() {
               </div>
 
               <div className="mb-3">
-                <label for="email" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
@@ -42,7 +42,7 @@ function ContactCon() {
               </div>
 
               <div className="mb-3">
-                <label for="email" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Phone
                 </label>
                 <input
@@ -55,7 +55,7 @@ function ContactCon() {
               </div>
 
               <div className="mb-3">
-                <label for="comment" className="form-label">
+                <label htmlFor="comment" className="form-label">
                   Comment
                 </label>
                 <textarea name="comment" className="form-control" placeholder="Comment here..." id=""></textarea>
