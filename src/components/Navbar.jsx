@@ -26,7 +26,7 @@ function Navbar() {
                      <Link  className='nav-link active' to='/faq'>FAQ</Link>
                   </li>
                   <li className="nav-item">
-                     <Link  className='nav-link active' to='/'>Login</Link>
+                     <Link className='nav-link btn btn-outline-success rounded-0' to='/'>Login</Link>
                   </li>
                </ul>
             </div>
