@@ -45,13 +45,13 @@ function FaqContent() {
               <tbody>
                 {comments.map((comment, index) => (
                   <tr key={index}>
-                    <th scope="row">{index+1}</th>
+                    <th scope="row">{index + 1}</th>
                     <td>{comment.username}</td>
                     <td>{comment.phone}</td>
                     <td>{comment.email}</td>
                     <td>{comment.comment}</td>
                     <td className="text-info">
-                      <Link to="/faq/details">More..</Link>
+                      <Link to={`/faq/details/${comment.id}`}> More..</Link>
                     </td>
                   </tr>
                 ))}
