@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useParams } from "react-router-dom";
 import Spinner from "./Spinner";
 
 // const baseURL = "http://localhost:8080/contact";
@@ -8,18 +8,27 @@ import Spinner from "./Spinner";
 function FaqContent() {
   const [comments, setComment] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {id} = useParams();
+  const redirect = useNavigate();
+
+  console.log(id);
 
   useEffect(() => {
     loadComments();
   }, []);
+
+  const deleteContact = async(id) =>{
+      await axios.delete(`http://localhost:8080/delete/${id}`)
+      redirect('/contact')
+  }
 
   const loadComments = async () => {
     const result = await axios.get("http://localhost:8080/contact");
     setComment(result.data);
     setLoading(false);
   };
+  
   if (!comments) return null;
-
   if (loading) {
     return <Spinner />;
   }
@@ -51,7 +60,8 @@ function FaqContent() {
                     <td>{comment.email}</td>
                     <td>{comment.comment}</td>
                     <td className="text-info">
-                      <Link to={`/faq/details/${comment.id}`}> More..</Link>
+                      <Link to={`/faq/details/${comment.id}`} className="btn btn-outline-info me-2"> View </Link>
+                      <button  onClick={() =>deleteContact(comment.id)} className="btn btn-outline-danger me-2"> Delete</button>
                     </td>
                   </tr>
                 ))}
