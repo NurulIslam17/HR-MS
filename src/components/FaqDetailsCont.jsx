@@ -1,19 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from "./Spinner";
 
 function FaqDetailsCont() {
   const [contact, setContact] = useState([]);
+  const [load,setLoad] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
     const getContact = async () => {
       const res = await axios.get(`http://localhost:8080/contact/${id}`);
       setContact(res.data);
+      setLoad(false)
     };
     getContact();
   }, [id]);
 
+  if (load) {
+    <Spinner/>
+  }
   return (
     <>
       <div className="container my-5">
